@@ -233,6 +233,7 @@ public class FileManager {
                     if (password != null || username != null) {
                         System.out.println("WARNING: Password or Username specified for NoAuth");
                     }
+                    break;
                 case 2: // vnc auth
                     if (password == null) {
                         System.out.println("ERROR: Password missing for VncAuth");
