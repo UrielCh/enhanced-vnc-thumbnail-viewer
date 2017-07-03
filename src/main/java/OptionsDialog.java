@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class OptionsDialog extends JDialog implements ActionListener {
     
     private static final int PADDING = 15;
@@ -212,7 +213,6 @@ public class OptionsDialog extends JDialog implements ActionListener {
         return panel;
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == okButton) {
             // Login

@@ -84,7 +84,6 @@ public class SlideshowSettingDialog extends JDialog implements ActionListener, K
         }
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == okButton) {
@@ -94,18 +93,15 @@ public class SlideshowSettingDialog extends JDialog implements ActionListener, K
         }
     }
 
-    @Override
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (KeyEvent.VK_ENTER == e.getKeyCode()) {
             saveSetting();
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

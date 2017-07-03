@@ -1,4 +1,7 @@
 import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -68,7 +71,10 @@ public class ThemeSetting {
      */
     protected static void readFile() {
         try {
-            settings = new JSONObject(new JSONTokener(new FileReader("resources/themes/" + name.toLowerCase()  + ".json")));
+        	// resources/
+        	String rn = "themes/" + name.toLowerCase()  + ".json";
+        	Reader reader = new InputStreamReader(ThemeSetting.class.getClassLoader().getResourceAsStream(rn));
+            settings = new JSONObject(new JSONTokener(reader));
         } catch (Exception ex) {
             String msg = "Cannot find theme settings file. Now use Default theme instead.";
             RecentSettingsList.addRecent(new RecentSetting(msg, "Theme"));

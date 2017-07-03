@@ -18,10 +18,10 @@ class Pagination {
     int previousStart, previousEnd, nextStart, nextEnd, presentStart, presentEnd;
     int[] step;
     VncViewersList viewersList;
-    Vector viewers;
+    Vector<VncViewer> viewers;
 
     Pagination(VncViewersList v) {
-        viewers = new Vector();
+        viewers = new Vector<VncViewer>();
         viewersList = v;
         presentPage = 1;
         presentStart = 0;
@@ -29,7 +29,7 @@ class Pagination {
         step = new int[2];
     }
 
-    public Vector next() {
+    public Vector<VncViewer> next() {
         // Modified on evnctv 1.001
         if (hasNext()) {
             calNext();
@@ -42,7 +42,7 @@ class Pagination {
         return viewers;
     }
 
-    public Vector previous() {
+    public Vector<VncViewer> previous() {
         // Modified on evnctv 1.001
         if (hasPrevious()) {
             calPrevious();

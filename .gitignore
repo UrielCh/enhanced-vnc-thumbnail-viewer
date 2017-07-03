@@ -5,3 +5,6 @@ manifest.mf
 **/*.class
 .project
 .classpath
+/bin/
+/target/
+.settings/

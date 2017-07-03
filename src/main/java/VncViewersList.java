@@ -38,7 +38,8 @@ import java.util.*;
 //    an external xml file.
 //
 
-public class VncViewersList extends Vector {
+@SuppressWarnings("serial")
+public class VncViewersList extends Vector<VncViewer> {
     
   private EnhancedVncThumbnailViewer tnViewer;
   
@@ -153,7 +154,7 @@ public class VncViewersList extends Vector {
   public VncViewer getViewer(String hostname, int port) {
     VncViewer v = null;
 
-    ListIterator l = listIterator();
+    ListIterator<VncViewer> l = listIterator();
     while(l.hasNext()) {
       v = (VncViewer)l.next();
       if(v.host == hostname && v.port == port) {
@@ -167,7 +168,7 @@ public class VncViewersList extends Vector {
   public VncViewer getViewer(Container c) {
     VncViewer v = null;
 
-    ListIterator l = listIterator();
+    ListIterator<VncViewer> l = listIterator();
     while(l.hasNext()) {
       v = (VncViewer)l.next();
       if(c.isAncestorOf(v)) {
@@ -181,7 +182,7 @@ public class VncViewersList extends Vector {
   public VncViewer getViewer(Button b) {
     VncViewer v;
 
-    ListIterator l = listIterator();
+    ListIterator<VncViewer> l = listIterator();
     while(l.hasNext()) {
       v = (VncViewer)l.next();
       if(v.getParent().isAncestorOf(b)) {

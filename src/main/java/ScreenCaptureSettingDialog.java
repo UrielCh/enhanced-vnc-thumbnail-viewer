@@ -130,7 +130,6 @@ public class ScreenCaptureSettingDialog extends JDialog implements ActionListene
         }
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == selectPathButton) {
@@ -144,18 +143,15 @@ public class ScreenCaptureSettingDialog extends JDialog implements ActionListene
         }
     }
 
-    @Override
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (KeyEvent.VK_ENTER == e.getKeyCode()) {
             saveSetting();
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

@@ -177,7 +177,6 @@ public class ProxySettingDialog extends JDialog implements ActionListener, KeyLi
         }
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         enableTypeProxy();
 
@@ -189,18 +188,15 @@ public class ProxySettingDialog extends JDialog implements ActionListener, KeyLi
     }
 
     // Added on evnctv 1.001
-    @Override
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (KeyEvent.VK_ENTER == e.getKeyCode()) {
             saveSetting();
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

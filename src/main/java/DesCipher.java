@@ -75,8 +75,6 @@
 // fine Java utilities: http://www.acme.com/java/
 
 
-import java.io.*;
-
 /// The DES encryption method.
 // <P>
 // This is surprisingly fast, for pure Java.  On a SPARC 20, wrapped

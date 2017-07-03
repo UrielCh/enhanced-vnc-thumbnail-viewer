@@ -89,7 +89,6 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
         }
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
             checkLogin();
@@ -100,18 +99,15 @@ public class LoginDialog extends JDialog implements ActionListener, KeyListener 
     }
 
     // Added on evnctv 1.001
-    @Override
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (KeyEvent.VK_ENTER == e.getKeyCode()) {
             checkLogin();
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

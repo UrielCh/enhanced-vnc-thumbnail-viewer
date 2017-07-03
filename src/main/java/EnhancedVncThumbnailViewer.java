@@ -804,18 +804,15 @@ public class EnhancedVncThumbnailViewer extends Frame
     }
 
     /* Added on evnctv 1.001 */
-    @Override
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (e.getSource().equals(searchField) && KeyEvent.VK_ENTER == e.getKeyCode()) {
             searchViewer();
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     }
 

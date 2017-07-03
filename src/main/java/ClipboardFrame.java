@@ -25,6 +25,7 @@
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 class ClipboardFrame extends Frame
   implements WindowListener, ActionListener {
 

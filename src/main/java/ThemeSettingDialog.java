@@ -7,14 +7,15 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class ThemeSettingDialog extends JDialog implements ActionListener, KeyListener {
 
     private static final int PADDING = 15;
-    private static final int SPACING = 9;
+    // private static final int SPACING = 9;
     
     private EnhancedVncThumbnailViewer evnctv;
     private JButton okButton, cancelButton;
-    private JComboBox selector;
+    private JComboBox<String> selector;
     
     public ThemeSettingDialog(EnhancedVncThumbnailViewer tnviewer) {
         super(tnviewer, true);
@@ -26,7 +27,7 @@ public class ThemeSettingDialog extends JDialog implements ActionListener, KeyLi
         okButton = new JButton("OK");
         cancelButton = new JButton("Cancel");
         JLabel themeLabel = new JLabel("Theme:");
-        selector = new JComboBox(ThemeSetting.LIST);
+        selector = new JComboBox<String>(ThemeSetting.LIST);
         selector.setSelectedItem(ThemeSetting.getName());
 
         okButton.addActionListener(this);
@@ -94,7 +95,6 @@ public class ThemeSettingDialog extends JDialog implements ActionListener, KeyLi
         }
     }
 
-    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == okButton) {
             saveSetting();
@@ -103,18 +103,15 @@ public class ThemeSettingDialog extends JDialog implements ActionListener, KeyLi
         }
     }
 
-    @Override
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (KeyEvent.VK_ENTER == e.getKeyCode()) {
             saveSetting();
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     }
 }

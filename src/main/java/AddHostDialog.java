@@ -197,11 +197,9 @@ class AddHostDialog extends JDialog implements ActionListener, ItemListener, Key
     /*
      * Added on evnctv 1.001
      */
-    @Override
     public void keyTyped(KeyEvent e) {
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
         if (KeyEvent.VK_ENTER == e.getKeyCode()) {
             callAddHost();
@@ -209,7 +207,6 @@ class AddHostDialog extends JDialog implements ActionListener, ItemListener, Key
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
     }
 }
