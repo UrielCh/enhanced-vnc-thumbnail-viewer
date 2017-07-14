@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class SlideshowSettingDialog extends JDialog implements ActionListener, KeyListener {
 
     private JTextField delayField;

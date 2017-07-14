@@ -32,6 +32,7 @@ import javax.swing.*;
 //
 // The Dialog is used to add another host to EnhancedVncThumbnailViewer
 //
+@SuppressWarnings("serial")
 class AddHostDialog extends JDialog implements ActionListener, ItemListener, KeyListener {
 
     static String readEncPassword(String encPass) {

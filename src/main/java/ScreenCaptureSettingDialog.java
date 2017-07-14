@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class ScreenCaptureSettingDialog extends JDialog implements ActionListener, KeyListener {
 
     private static final int PADDING = 15;

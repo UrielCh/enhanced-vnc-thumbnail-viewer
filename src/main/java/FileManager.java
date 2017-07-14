@@ -66,12 +66,13 @@ public class FileManager {
                     System.out.println("ERROR: Password needed to properly read file.");
                 }
 
-                Enumeration enm = root.enumerateChildren();
+                @SuppressWarnings("unchecked")
+				Enumeration<IXMLElement> enm = (Enumeration<IXMLElement>)root.enumerateChildren();
 
                 // Read file version 1.4, 1.000 or 1.001 only
                 if (version.equals("1.4") || version.equals("1.000") || version.equals("1.001")) {
                     while (enm.hasMoreElements()) {
-                        IXMLElement e = (IXMLElement) enm.nextElement();
+                        IXMLElement e = enm.nextElement();
 
                         if (e.getFullName().equalsIgnoreCase("Connection")) {
                             parseConnection(e, encrypted, encPassword, evnctv.getViewerList());
@@ -81,7 +82,7 @@ public class FileManager {
                     }
                 } else {
                     while (enm.hasMoreElements()) {
-                        IXMLElement e = (IXMLElement) enm.nextElement();
+                        IXMLElement e = enm.nextElement();
                         Enumeration enm2 = e.enumerateChildren();
 
                         if (e.getFullName().equalsIgnoreCase("Connections")) {
@@ -97,22 +98,22 @@ public class FileManager {
                         } else if (e.getFullName().equalsIgnoreCase("Settings")) {
                             while (enm2.hasMoreElements()) {
                                 IXMLElement e2 = (IXMLElement) enm2.nextElement();
-
-                                if (e2.getFullName().equalsIgnoreCase("Proxy")) {
+                                String name = e2.getFullName(); 
+                                if (name.equalsIgnoreCase("Proxy")) {
                                     initSettings(e2, encrypted, encPassword, "Proxy");
-                                } else if (e2.getFullName().equalsIgnoreCase("Login")) {
+                                } else if (name.equalsIgnoreCase("Login")) {
                                     initSettings(e2, encrypted, encPassword, "Login");
-                                } else if (e2.getFullName().equalsIgnoreCase("Slideshow")) {
+                                } else if (name.equalsIgnoreCase("Slideshow")) {
                                     initSettings(e2, encrypted, encPassword, "Slideshow");
-                                } else if (e2.getFullName().equalsIgnoreCase("ScreenCapture")) {
+                                } else if (name.equalsIgnoreCase("ScreenCapture")) {
                                     // Added on evnctv 1.003
                                     initSettings(e2, encrypted, encPassword, "ScreenCapture");
-                                } else if (e2.getFullName().equalsIgnoreCase("Theme")) {
+                                } else if (name.equalsIgnoreCase("Theme")) {
                                     // Added on evnctv 1.4.0
                                     initSettings(e2, encrypted, encPassword, "Theme");
                                     evnctv.setGuiTheme();
                                 } else {
-                                    System.out.println("Load: Ignoring " + e2.getFullName());
+                                    System.out.println("Load: Ignoring " + name);
                                 }
                             }
                         } else if (e.getFullName().equalsIgnoreCase("RecentSettings")) {
@@ -334,15 +335,12 @@ public class FileManager {
         settings.addChild(theme);
 
         // Recent settings element
-        if (RecentSettingsList.getTotalRecents().size() > 0) {
+        if (RecentSettingsList.size() > 0) {
             IXMLElement recentSettings = new XMLElement("RecentSettings");
             manifest.addChild(recentSettings);
 
             // Recent child
-            Enumeration enm = RecentSettingsList.getTotalRecents().elements();
-            while (enm.hasMoreElements()) {
-                RecentSetting rs = (RecentSetting) enm.nextElement();
-
+            for (RecentSetting rs : RecentSettingsList.getTotalRecents()) {
                 IXMLElement recent = settings.createElement("Recent");
                 recent.setAttribute("Title", rs.getTitle());
                 recent.setAttribute("Type", rs.getType());

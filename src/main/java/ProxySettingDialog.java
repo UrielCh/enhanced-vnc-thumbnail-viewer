@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class ProxySettingDialog extends JDialog implements ActionListener, KeyListener {
 
     private JTextField serverField, portField;

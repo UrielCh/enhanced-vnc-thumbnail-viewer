@@ -25,6 +25,7 @@ import java.awt.event.*;
 // The panel which implements the user authentication scheme
 //
 
+@SuppressWarnings("serial")
 class AuthPanel extends Panel implements ActionListener {
 
   TextField passwordField;

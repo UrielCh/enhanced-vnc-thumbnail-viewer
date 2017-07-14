@@ -20,8 +20,6 @@
 
 // Adopted to ms-logon for ultravnc and ported to Java by marscha, 2006.
 
-import java.lang.Math;
-
 public class DiffieHellman {
 
 	public DiffieHellman() {

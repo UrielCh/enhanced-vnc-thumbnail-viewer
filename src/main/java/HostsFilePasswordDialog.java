@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class HostsFilePasswordDialog extends Dialog implements ActionListener {
 
   private Button ok;

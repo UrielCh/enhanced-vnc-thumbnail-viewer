@@ -26,6 +26,7 @@ import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 class RecordingFrame extends Frame
   implements WindowListener, ActionListener {
 

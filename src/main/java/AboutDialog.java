@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 public class AboutDialog extends JDialog implements ActionListener{
     
     private JButton okButton;

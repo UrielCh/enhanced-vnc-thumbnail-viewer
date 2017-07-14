@@ -24,6 +24,7 @@ import java.io.*;
 // VncCanvas2 is a special version of VncCanvas which may use Java 2 API.
 //
 
+@SuppressWarnings("serial")
 class VncCanvas2 extends VncCanvas {
 
   public VncCanvas2(VncViewer v) throws IOException {
@@ -51,7 +52,7 @@ class VncCanvas2 extends VncCanvas {
 
   private void disableFocusTraversalKeys() {
     try {
-      Class[] argClasses = { Boolean.TYPE };
+      Class<?>[] argClasses = { Boolean.TYPE };
       java.lang.reflect.Method method =
         getClass().getMethod("setFocusTraversalKeysEnabled", argClasses);
       Object[] argObjects = { new Boolean(false) };

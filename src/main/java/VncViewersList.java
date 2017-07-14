@@ -39,158 +39,116 @@ import java.util.*;
 //
 
 @SuppressWarnings("serial")
-public class VncViewersList extends Vector<VncViewer> {
-    
-  private EnhancedVncThumbnailViewer tnViewer;
-  
-  //
-  // Constructor.
-  //
-  public VncViewersList(EnhancedVncThumbnailViewer v)
-  {
-    super();
-    tnViewer = v;
-  }
+public class VncViewersList extends ArrayList<VncViewer> {
 
-  //
-  // If a host is loaded in first time, this method will be called
-  //
-  public VncViewer launchViewer(String host, int port, String password, String user, String userdomain, String compname) {
-    VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
-    add(v);
-    tnViewer.addViewer(v);
+	private EnhancedVncThumbnailViewer tnViewer;
 
-    return v;
-  }
-  
-  //
-  // Added on evnctv 1.000
-  //    When want to reconnect, this will be called
-  //
-  public VncViewer launchViewerReconnect(String host, int port, String password, String user, String userdomain, String compname) {
-    VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
-    tnViewer.addViewer(v);
-    
-    return v;
-  }
-  
-  public VncViewer launchViewerReconnect(String host, int port, String password, String user, String userdomain, String compname, int order) {
-    VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
-    tnViewer.addViewer(v, order);
-    
-    return v;
-  }
-  
-  /* Added on evnctv 1.003 */
-  public VncViewer launchViewerScreenCapture(String host, int port, String password, String user, String userdomain, String compname) {
-    VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
-    tnViewer.addViewerScreenCapture(v);
-    
-    return v;
-  }
-  
-  public static VncViewer launchViewer(EnhancedVncThumbnailViewer tnviewer, String host, int port, String password, String user, String userdomain, String compname) {
-    String args[] = new String[4];
-    args[0] = "host";
-    args[1] = host;
-    args[2] = "port";
-    args[3] = Integer.toString(port);
+	//
+	// Constructor.
+	//
+	public VncViewersList(EnhancedVncThumbnailViewer v) {
+		super();
+		tnViewer = v;
+	}
 
-    if(password != null && password.length() != 0) {
-      int newlen = args.length + 2;
-      String[] newargs = new String[newlen];
-      System.arraycopy(args, 0, newargs, 0, newlen-2);
-      newargs[newlen-2] = "password";
-      newargs[newlen-1] = password;
-      args = newargs;
-    }
+	//
+	// If a host is loaded in first time, this method will be called
+	//
+	public VncViewer launchViewer(String host, int port, String password, String user, String userdomain, String compname) {
+		VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
+		add(v);
+		tnViewer.addViewer(v);
+		return v;
+	}
 
-    if(user != null && user.length() != 0) {
-      int newlen = args.length + 2;
-      String[] newargs = new String[newlen];
-      System.arraycopy(args, 0, newargs, 0, newlen-2);
-      newargs[newlen-2] = "username";
-      newargs[newlen-1] = user;
-      args = newargs;
-    }
+	//
+	// Added on evnctv 1.000
+	//    When want to reconnect, this will be called
+	//
+	public VncViewer launchViewerReconnect(String host, int port, String password, String user, String userdomain, String compname) {
+		VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
+		tnViewer.addViewer(v);
+		return v;
+	}
 
-    if(userdomain != null && userdomain.length() != 0) {
-      int newlen = args.length + 2;
-      String[] newargs = new String[newlen];
-      System.arraycopy(args, 0, newargs, 0, newlen-2);
-      newargs[newlen-2] = "userdomain";
-      newargs[newlen-1] = userdomain;
-      args = newargs;
-    }
-    
-    if(compname != null && compname.length() != 0) {
-      int newlen = args.length + 2;
-      String[] newargs = new String[newlen];
-      System.arraycopy(args, 0, newargs, 0, newlen-2);
-      newargs[newlen-2] = "compname";
-      newargs[newlen-1] = compname;
-      args = newargs;
-    }
+	public VncViewer launchViewerReconnect(String host, int port, String password, String user, String userdomain, String compname, int order) {
+		VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
+		tnViewer.addViewer(v, order);
+		return v;
+	}
 
-    // launch a new viewer
-    System.out.println("Launch Host: " + host + ":" + port);
-    VncViewer v = new VncViewer();
-    v.mainArgs = args;
-    v.inAnApplet = false;
-    v.inSeparateFrame = false;
-    v.showControls = true;
-    v.showOfflineDesktop = true;
-    v.vncFrame = tnviewer;
-    v.init();
-    v.options.viewOnly = true;
-    v.options.autoScale = true; // false, because ThumbnailViewer maintains the scaling
-    v.options.scalingFactor = 10;
-    v.addContainerListener(tnviewer);
-    v.start();
-    
-    return v;
-  }
+	/* Added on evnctv 1.003 */
+	public VncViewer launchViewerScreenCapture(String host, int port, String password, String user, String userdomain, String compname) {
+		VncViewer v = launchViewer(tnViewer, host, port, password, user, userdomain, compname);
+		tnViewer.addViewerScreenCapture(v);
+		return v;
+	}
 
-  public VncViewer getViewer(String hostname, int port) {
-    VncViewer v = null;
+	public static VncViewer launchViewer(EnhancedVncThumbnailViewer tnviewer, String host, int port, String password, String user, String userdomain,
+			String compname) {
+		ArrayList<String> args = new ArrayList<String>();
+		args.add("host");
+		args.add(host);
+		args.add("port");
+		args.add(Integer.toString(port));
 
-    ListIterator<VncViewer> l = listIterator();
-    while(l.hasNext()) {
-      v = (VncViewer)l.next();
-      if(v.host == hostname && v.port == port) {
-        return v;
-      }
-    }
+		if (password != null && password.length() != 0) {
+			args.add("password");
+			args.add(password);
+		}
 
-    return null;
-  }
+		if (user != null && user.length() != 0) {
+			args.add("username");
+			args.add(user);
+		}
 
-  public VncViewer getViewer(Container c) {
-    VncViewer v = null;
+		if (userdomain != null && userdomain.length() != 0) {
+			args.add("userdomain");
+			args.add(userdomain);
+		}
 
-    ListIterator<VncViewer> l = listIterator();
-    while(l.hasNext()) {
-      v = (VncViewer)l.next();
-      if(c.isAncestorOf(v)) {
-        return v;
-      }
-    }
+		if (compname != null && compname.length() != 0) {
+			args.add("compname");
+			args.add(compname);
+		}
 
-    return null;
-  }
+		// launch a new viewer
+		System.out.println("Launch Host: " + host + ":" + port);
+		VncViewer v = new VncViewer();
+		v.mainArgs = args.toArray(new String[args.size()]);
+		v.inAnApplet = false;
+		v.inSeparateFrame = false;
+		v.showControls = true;
+		v.showOfflineDesktop = true;
+		v.vncFrame = tnviewer;
+		v.init();
+		v.options.viewOnly = true;
+		v.options.autoScale = true; // false, because ThumbnailViewer maintains the scaling
+		v.options.scalingFactor = 10;
+		v.addContainerListener(tnviewer);
+		v.start();
 
-  public VncViewer getViewer(Button b) {
-    VncViewer v;
+		return v;
+	}
 
-    ListIterator<VncViewer> l = listIterator();
-    while(l.hasNext()) {
-      v = (VncViewer)l.next();
-      if(v.getParent().isAncestorOf(b)) {
-        return v;
-      }
-    }
+	public VncViewer getViewer(String hostname, int port) {
+		for (VncViewer v : this)
+			if (v.host.equals(hostname) && v.port == port)
+				return v;
+		return null;
+	}
 
-    return null;
-  }
+	public VncViewer getViewer(Container c) {
+		for (VncViewer v : this)
+			if (c.isAncestorOf(v))
+				return v;
+		return null;
+	}
 
+	public VncViewer getViewer(Button b) {
+		for (VncViewer v : this)
+			if (v.getParent().isAncestorOf(b))
+				return v;
+		return null;
+	}
 }

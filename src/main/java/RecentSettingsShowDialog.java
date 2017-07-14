@@ -5,10 +5,10 @@
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Enumeration;
 import javax.swing.*;
 import javax.swing.table.*;
 
+@SuppressWarnings("serial")
 public class RecentSettingsShowDialog extends JDialog implements ActionListener {
 
     private JButton closeButton;
@@ -50,15 +50,12 @@ public class RecentSettingsShowDialog extends JDialog implements ActionListener 
         
         // Assign value to row
         int count = 0;
-        RecentSetting rs;
+//        RecentSetting rs;
         TableModel tm = table.getModel();
-        Enumeration enm = RecentSettingsList.getTotalRecents().elements();
-        while (enm.hasMoreElements()) {
-            rs = (RecentSetting) enm.nextElement();
+        for (RecentSetting rs : RecentSettingsList.getTotalRecents()) {
             tm.setValueAt("  " + rs.getTitle(), count, 0);
             tm.setValueAt("  " + rs.getType(), count, 1);
-            tm.setValueAt("  " + rs.getDate() + " " + rs.getTime(), count, 2);
-            
+            tm.setValueAt("  " + rs.getDate() + " " + rs.getTime(), count, 2);            
             count++;
         }
         

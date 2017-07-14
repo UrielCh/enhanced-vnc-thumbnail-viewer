@@ -36,6 +36,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+@SuppressWarnings("serial")
 class OptionsFrame extends JFrame
   implements WindowListener, ActionListener, ItemListener {
 

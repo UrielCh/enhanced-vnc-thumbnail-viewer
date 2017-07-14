@@ -26,12 +26,12 @@
 
 import java.awt.*;
 import java.awt.event.*;
-import java.applet.*;
 
 //
 // The panel which implements the Relogin button
 //
 
+@SuppressWarnings("serial")
 class ReloginPanel extends Panel implements ActionListener {
   Button reloginButton;
   Button closeButton;

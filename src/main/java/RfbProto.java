@@ -36,7 +36,6 @@
 //
 
 import java.io.*;
-import java.awt.*;
 import java.awt.event.*;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -276,7 +275,8 @@ class RfbProto {
         } 
     } else {
       try {
-	Class factoryClass = Class.forName(viewer.socketFactory);
+	@SuppressWarnings("unchecked")
+	Class<SocketFactory> factoryClass = (Class<SocketFactory>) Class.forName(viewer.socketFactory);
 	SocketFactory factory = (SocketFactory)factoryClass.newInstance();
 	if (viewer.inAnApplet)
 	  sock = factory.createSocket(host, port, viewer);
