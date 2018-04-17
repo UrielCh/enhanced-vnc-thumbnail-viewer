@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
@@ -72,7 +75,20 @@ public class ThemeSetting {
         try {
         	// resources/
         	String rn = "themes/" + name.toLowerCase()  + ".json";
-        	Reader reader = new InputStreamReader(ThemeSetting.class.getClassLoader().getResourceAsStream(rn));
+			InputStream input = ThemeSetting.class.getClassLoader().getResourceAsStream(rn);
+			if (input == null) {
+				File file = new File("themes/" + name.toLowerCase() + ".json");
+				System.out.println(file.getAbsolutePath());
+				if (file.exists())
+					input = new FileInputStream(file);
+			}
+			if (input == null) {
+				File file = new File("src/main/resources/themes/" + name.toLowerCase() + ".json");
+				System.out.println(file.getAbsolutePath());
+				if (file.exists())
+					input = new FileInputStream(file);
+			}
+			Reader reader = new InputStreamReader(input);
             settings = new JSONObject(new JSONTokener(reader));
         } catch (Exception ex) {
             String msg = "Cannot find theme settings file. Now use Default theme instead.";

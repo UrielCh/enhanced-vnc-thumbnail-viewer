@@ -50,7 +50,7 @@ class AddHostDialog extends JDialog implements ActionListener, ItemListener, Key
         }
         for (int i = 0; i < len; i++) {
             String hex = encPass.substring(i * 2, i * 2 + 2);
-            Integer x = new Integer(Integer.parseInt(hex, 16));
+            Integer x = Integer.valueOf(hex, 16);
             pw[i] = x.byteValue();
         }
         byte[] key = {23, 82, 107, 6, 35, 78, 88, 7};
@@ -87,9 +87,9 @@ class AddHostDialog extends JDialog implements ActionListener, ItemListener, Key
         hostField = new JTextField("", 10);
         portField = new JTextField("5900", 10);
         usernameField = new JTextField("", 10);
-        usernameField.enable(false); // not needed by default
+        usernameField.setEnabled(false); // not needed by default
         passwordField = new JPasswordField("", 10);
-        passwordField.enable(false); // not needed by default
+        passwordField.setEnabled(false); // not needed by default
 
         compnameField = new JTextField("", 10); // Added on evnctv 1.0 ***
 
@@ -183,15 +183,15 @@ class AddHostDialog extends JDialog implements ActionListener, ItemListener, Key
 
     public void itemStateChanged(ItemEvent e) {
         if (authChoice.getSelectedItem() == "(none)") {
-            passwordField.enable(false);
+            passwordField.setEnabled(false);
         } else {
-            passwordField.enable(true);
+            passwordField.setEnabled(true);
         }
 
         if (authChoice.getSelectedItem() == "MS-Logon") {
-            usernameField.enable(true);
+            usernameField.setEnabled(true);
         } else {
-            usernameField.enable(false);
+            usernameField.setEnabled(false);
         }
     }
 
